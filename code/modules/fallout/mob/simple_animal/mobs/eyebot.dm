@@ -44,10 +44,17 @@
 	idlesound = list('sound/f13npc/eyebot/idle1.ogg', 'sound/f13npc/eyebot/idle2.ogg')
 	death_sound = 'sound/f13npc/eyebot/robo_death.ogg'
 	speak_emote = list("states")
+	var/obj/machinery/camera/portable/builtInCamera
 
 /mob/living/simple_animal/hostile/eyebot/New()
 	..()
 	name = "ED-[rand(1,99)]"
+
+	if(icon_state == "eyebot")
+		builtInCamera = new /obj/machinery/camera/portable(src)
+		builtInCamera.network = list("enclave")
+		builtInCamera.c_tag = name
+
 
 /mob/living/simple_animal/hostile/eyebot/playable
 	ranged = FALSE
